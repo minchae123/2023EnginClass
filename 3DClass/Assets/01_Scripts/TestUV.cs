@@ -32,6 +32,7 @@ public class TestUV : MonoBehaviour
         triangles[4] = 2;
         triangles[5] = 0;
 
+
         uv[0] = new Vector2(0, 0);
         uv[1] = new Vector2(0, 1);
         uv[2] = new Vector2(1, 1);

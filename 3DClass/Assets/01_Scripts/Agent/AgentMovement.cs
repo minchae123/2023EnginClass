@@ -13,9 +13,12 @@ public class AgentMovement : MonoBehaviour
     public Vector3 MovementVelocity => movementVelocity; // 평면속도
     private float verticalVelocity; // 중력속도
 
+    private AgentAnimator animator;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        animator = transform.Find("Visual").GetComponent<AgentAnimator>();
     }
 
     private void Update()
@@ -33,11 +36,13 @@ public class AgentMovement : MonoBehaviour
 
     private void CalculatePlayerMovement()
     {
+        animator?.SetSpeed(MovementVelocity.sqrMagnitude);
         movementVelocity.Normalize();
 
         movementVelocity *= moveSpeed * Time.deltaTime;
-
         movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
+
+
         if(movementVelocity.sqrMagnitude > 0)
         {
             transform.rotation = Quaternion.LookRotation(movementVelocity); // 갈 방향 보게 하기
@@ -48,6 +53,7 @@ public class AgentMovement : MonoBehaviour
     public void StopImmediately()
     {
         movementVelocity = Vector3.zero;
+        animator?.SetSpeed(MovementVelocity.sqrMagnitude);
     }
 
     private void FixedUpdate()
@@ -66,5 +72,7 @@ public class AgentMovement : MonoBehaviour
 
         Vector3 move = movementVelocity + verticalVelocity * Vector3.up;
         characterController.Move(move);
+
+        animator?.SetAirbone(characterController.isGrounded == false);
     }
 }

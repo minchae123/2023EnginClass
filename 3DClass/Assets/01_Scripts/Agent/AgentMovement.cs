@@ -21,17 +21,10 @@ public class AgentMovement : MonoBehaviour
         animator = transform.Find("Visual").GetComponent<AgentAnimator>();
     }
 
-    private void Update()
+    public void SetMovementVelocity(Vector3 value)
     {
-        UpdateMovement();
-    }
+        movementVelocity = value;
 
-    private void UpdateMovement()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        movementVelocity = new Vector3(horizontal, 0, vertical);
     }
 
     private void CalculatePlayerMovement()
@@ -41,7 +34,6 @@ public class AgentMovement : MonoBehaviour
 
         movementVelocity *= moveSpeed * Time.deltaTime;
         movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
-
 
         if(movementVelocity.sqrMagnitude > 0)
         {
@@ -69,7 +61,6 @@ public class AgentMovement : MonoBehaviour
             // 0.3은 하드코딩 값
             verticalVelocity = gravity * 0.3f * Time.fixedDeltaTime;
         }
-
         Vector3 move = movementVelocity + verticalVelocity * Vector3.up;
         characterController.Move(move);
 

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 public class NormalState : CommonState
 {
@@ -10,12 +12,19 @@ public class NormalState : CommonState
     {
         agentMovement?.StopImmediately();
         agentInput.OnMovementKeyPress += OnMovementHandle;
+        agentInput.OnAttackKeyPress += OnAttackKeyHandle;
     }
 
     public override void OnExitState()
     {
         agentMovement?.StopImmediately();
         agentInput.OnMovementKeyPress -= OnMovementHandle;
+        agentInput.OnAttackKeyPress -= OnAttackKeyHandle;
+    }
+
+    private void OnAttackKeyHandle()
+    {
+        agentController.ChangeState(StateType.Attack);
     }
 
     private void OnMovementHandle(Vector3 obj)
@@ -33,4 +42,6 @@ public class NormalState : CommonState
     {
 
     }
+
+
 }

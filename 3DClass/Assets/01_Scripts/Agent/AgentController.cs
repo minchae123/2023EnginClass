@@ -16,7 +16,7 @@ public class AgentController : MonoBehaviour
 
         foreach(StateType state in Enum.GetValues(typeof(StateType)))
         {
-            Istate stateScript = stateTrm.GetComponent($"{state}State)") as Istate;
+            Istate stateScript = stateTrm.GetComponent($"{state}State") as Istate;
             if(stateScript == null)
             {
                 Debug.LogError($"There is no script : {state}");
@@ -33,7 +33,7 @@ public class AgentController : MonoBehaviour
         ChangeState(StateType.Normal);
     }
 
-    private void ChangeState(StateType type)
+    public void ChangeState(StateType type)
     {
         currentState?.OnExitState(); //현재 상태 나가고
         currentState = stateDictionary[type];

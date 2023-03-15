@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ public class AgentAnimator : MonoBehaviour
 {
     private readonly int speedHash = Animator.StringToHash("speed");
     private readonly int isAirboneHash = Animator.StringToHash("is_airbone");
+    private readonly int attackHash = Animator.StringToHash("attack");
+    private readonly int isAttackHash = Animator.StringToHash("is_attack");
+
+    public event Action OnAnimationEndTrigger = null;
 
     private Animator animator;
     public Animator Animator => Animator;
@@ -23,5 +28,28 @@ public class AgentAnimator : MonoBehaviour
     public void SetAirbone(bool value)
     {
         animator.SetBool(isAirboneHash, value);
+    }
+
+    public void SetAttackState(bool value)
+    {
+        animator.SetBool(isAttackHash, value);
+    }
+
+    public void SetAttackTrigger(bool value)
+    {
+        if (value)
+        {
+            animator.SetTrigger(attackHash);
+        }
+        else
+        {
+            animator.ResetTrigger(attackHash);
+        }
+    }
+
+
+    public void OnAnimationEnd()
+    {
+        OnAnimationEndTrigger?.Invoke();
     }
 }

@@ -24,7 +24,6 @@ public class AgentMovement : MonoBehaviour
     public void SetMovementVelocity(Vector3 value)
     {
         movementVelocity = value;
-
     }
 
     private void CalculatePlayerMovement()

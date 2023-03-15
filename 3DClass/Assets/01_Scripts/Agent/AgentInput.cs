@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Core.Define;
 
 public class AgentInput : MonoBehaviour
 {
     public event Action<Vector3> OnMovementKeyPress = null;
     public event Action OnAttackKeyPress = null;
+
+    [SerializeField] private LayerMask whatIsGround;
 
     private void Update()
     {
@@ -27,5 +30,21 @@ public class AgentInput : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         OnMovementKeyPress?.Invoke(new Vector3(horizontal, 0, vertical));
+    }
+
+    public Vector3 GetMouseWorldPosition()
+    {
+        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        bool result = Physics.Raycast(ray, out hit, MainCam.farClipPlane, whatIsGround);
+        if (result)
+        {
+            return hit.point;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 }

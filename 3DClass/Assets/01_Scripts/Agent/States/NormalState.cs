@@ -24,6 +24,8 @@ public class NormalState : CommonState
 
     private void OnAttackKeyHandle()
     {
+        Vector3 targetPos = agentInput.GetMouseWorldPosition();
+        //agentMovement.SetRotation(targetPos);
         agentController.ChangeState(StateType.Attack);
     }
 

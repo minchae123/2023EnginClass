@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b25f28749e94a48ad6654daa2db136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyDelay: 0.5
 --- !u!4 &534060503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
@@ -870,7 +871,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 44.97, y: -45, z: 0.001}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff2e37d9940ee740875e3652771be42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1369635475
 PrefabInstance:
   m_ObjectHideFlags: 0

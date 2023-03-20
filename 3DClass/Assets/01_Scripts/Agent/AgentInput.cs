@@ -8,6 +8,7 @@ public class AgentInput : MonoBehaviour
 {
     public event Action<Vector3> OnMovementKeyPress = null;
     public event Action OnAttackKeyPress = null;
+    public event Action OnRollingKeyPress = null; // ·Ñ¸µÅ°
 
     [SerializeField] private LayerMask whatIsGround;
 
@@ -15,6 +16,15 @@ public class AgentInput : MonoBehaviour
     {
         UpdateMovement();
         UpdateAttackInput();
+        UpdateRollingInput();
+    }
+
+    private void UpdateRollingInput()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            OnRollingKeyPress?.Invoke();
+        }
     }
 
     private void UpdateAttackInput()
@@ -34,7 +44,7 @@ public class AgentInput : MonoBehaviour
 
     public Vector3 GetMouseWorldPosition()
     {
-        Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = MainCam.ScreenPointToRay (Input.mousePosition);
 
         RaycastHit hit;
         bool result = Physics.Raycast(ray, out hit, MainCam.farClipPlane, whatIsGround);

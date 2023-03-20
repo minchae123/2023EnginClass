@@ -9,6 +9,7 @@ public class AgentAnimator : MonoBehaviour
     private readonly int isAirboneHash = Animator.StringToHash("is_airbone");
     private readonly int attackHash = Animator.StringToHash("attack");
     private readonly int isAttackHash = Animator.StringToHash("is_attack");
+    private readonly int isRollingHash = Animator.StringToHash("is_rolling");
 
     public event Action OnAnimationEndTrigger = null;
 
@@ -18,6 +19,11 @@ public class AgentAnimator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public void SetRollingState(bool value)
+    {
+        animator.SetBool(isRollingHash, value);
     }
 
     public void SetSpeed(float value)

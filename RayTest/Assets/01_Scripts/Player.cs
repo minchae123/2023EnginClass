@@ -10,14 +10,8 @@ public class Player : MonoBehaviour
     private CharacterController characterController;
 
     private Vector3 movementVelocity;
-    public Vector3 MovementVelocity => movementVelocity; // 평면속도
-    private float verticalVelocity; // 중력속도
-
-    public event Action<Vector3> OnMovementKeyPress = null;
-
-
-    public GameObject bullet;
-    public GameObject pos;
+    public Vector3 MovementVelocity => movementVelocity; // ?????
+    private float verticalVelocity; // ??¼??
 
     private void Awake()
     {
@@ -27,17 +21,14 @@ public class Player : MonoBehaviour
     private void Update()
     {
         UpdateMovement();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(1);
-            Shoot();
-        }
     }
 
-    public void SetMovementVelocity(Vector3 value)
+    private void UpdateMovement()
     {
-        movementVelocity = value;
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        movementVelocity = new Vector3(horizontal, 0, vertical);
     }
 
     private void CalculatePlayerMovement()
@@ -45,34 +36,35 @@ public class Player : MonoBehaviour
         movementVelocity.Normalize();
 
         movementVelocity *= moveSpeed * Time.deltaTime;
-        movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
 
+        movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
         if (movementVelocity.sqrMagnitude > 0)
         {
-            transform.rotation = Quaternion.LookRotation(movementVelocity); // 갈 방향 보게 하기
+            transform.rotation = Quaternion.LookRotation(movementVelocity); // ?? ???? ???? ???
         }
 
     }
 
+    public void StopImmediately()
+    {
+        movementVelocity = Vector3.zero;
+    }
+
     private void FixedUpdate()
     {
-        CalculatePlayerMovement(); // 플레이어 이속 계산
+        CalculatePlayerMovement(); // ?÷???? ??? ???
 
-        verticalVelocity = gravity * 0.3f * Time.fixedDeltaTime;
+        if (characterController.isGrounded == false)
+        {
+            verticalVelocity = gravity * Time.fixedDeltaTime;
+        }
+        else
+        {
+            // 0.3?? ?????? ??
+            verticalVelocity = gravity * 0.3f * Time.fixedDeltaTime;
+        }
+
         Vector3 move = movementVelocity + verticalVelocity * Vector3.up;
         characterController.Move(move);
-
-    }
-
-    private void UpdateMovement()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        OnMovementKeyPress?.Invoke(new Vector3(horizontal, 0, vertical));
-    }
-
-    public void Shoot()
-    {
-        Instantiate(bullet, pos.transform.position, Quaternion.identity);
     }
 }

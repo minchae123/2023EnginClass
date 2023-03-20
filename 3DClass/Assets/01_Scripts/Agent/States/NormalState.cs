@@ -6,13 +6,12 @@ using Core;
 
 public class NormalState : CommonState
 {
-    protected AgentMovement agentMovement;
-
     public override void OnEnterState()
     {
         agentMovement?.StopImmediately();
         agentInput.OnMovementKeyPress += OnMovementHandle;
         agentInput.OnAttackKeyPress += OnAttackKeyHandle;
+        agentInput.OnRollingKeyPress += OnRollingHandle;
     }
 
     public override void OnExitState()
@@ -20,6 +19,12 @@ public class NormalState : CommonState
         agentMovement?.StopImmediately();
         agentInput.OnMovementKeyPress -= OnMovementHandle;
         agentInput.OnAttackKeyPress -= OnAttackKeyHandle;
+        agentInput.OnRollingKeyPress -= OnRollingHandle;
+    }
+
+    private void OnRollingHandle()
+    {
+        agentController.ChangeState(StateType.Rolling);
     }
 
     private void OnAttackKeyHandle()
@@ -34,16 +39,14 @@ public class NormalState : CommonState
         agentMovement.SetMovementVelocity(obj);
     }
 
-    public override void SetUp(Transform agentRoot)
+    /*public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
-        agentMovement = agentRoot.GetComponent<AgentMovement>();
-    }
+    }*/
+
 
     public override void UpdateState()
     {
 
     }
-
-
 }

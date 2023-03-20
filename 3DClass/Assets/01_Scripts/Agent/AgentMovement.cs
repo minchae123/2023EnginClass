@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AgentMovement : MonoBehaviour
 {
+    public bool IsActiveMove = true; // 키보드로 이동하냐 아니냐
+
     [SerializeField] private float moveSpeed = 8f, gravity = -9.8f;
 
     private CharacterController characterController;
@@ -38,7 +40,6 @@ public class AgentMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(movementVelocity); // 갈 방향 보게 하기
         }
-
     }
 
     public void StopImmediately()
@@ -47,9 +48,17 @@ public class AgentMovement : MonoBehaviour
         animator?.SetSpeed(MovementVelocity.sqrMagnitude);
     }
 
+    public void SetRotation(Vector3 targetPos)
+    {
+        Vector3 dir = targetPos - transform.position;
+        dir.y = 0;
+        transform.rotation = Quaternion.LookRotation(dir);
+    }
+
     private void FixedUpdate()
     {
-        CalculatePlayerMovement(); // 플레이어 이속 계산
+        if(IsActiveMove)
+            CalculatePlayerMovement(); // 플레이어 이속 계산 (키보드 입력시에만 45도 계산)
 
         if(characterController.isGrounded == false)
         {

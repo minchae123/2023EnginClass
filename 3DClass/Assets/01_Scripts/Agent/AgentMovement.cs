@@ -28,7 +28,7 @@ public class AgentMovement : MonoBehaviour
         movementVelocity = value;
     }
 
-    private void CalculatePlayerMovement()
+    public void CalculatePlayerMovement()
     {
         animator?.SetSpeed(MovementVelocity.sqrMagnitude);
         movementVelocity.Normalize();

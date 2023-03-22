@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class RollingState : CommonState
 {
-    [SerializeField] private float rollingSpeed = 0.4f;
+    [SerializeField] private float rollingSpeed = 0.4f, animationThreadhold = 0.1f;
+
+    private float timer = 0;
 
     public override void OnEnterState()
     {
@@ -15,9 +17,16 @@ public class RollingState : CommonState
         //Vector3 mousePos = agentInput.GetMouseWorldPosition();
         //Vector3 dir = mousePos - agentController.transform.position;
         //dir.y = 0;
-        Vector3 dir = agentMovement.MovementVelocity - agentController.transform.position;
-        dir = Quaternion.Euler(0, 90f, 0) * dir;
-        agentMovement.SetMovementVelocity(- dir.normalized * rollingSpeed);
+        //agentMovement.SetMovementVelocity(- dir.normalized * rollingSpeed);
+
+        Vector3 keyDir = agentInput.GetCurrentInputDirection();
+        if(keyDir.magnitude < 0.1f)
+        {
+            keyDir = agentController.transform.forward;
+        }
+        agentMovement.SetRotation(keyDir + agentController.transform.position);
+        agentMovement.SetMovementVelocity(keyDir.normalized * rollingSpeed);
+        timer = 0;
     }
 
     public override void OnExitState()
@@ -30,13 +39,14 @@ public class RollingState : CommonState
 
     private void RollingEndHandle()
     {
+        if (timer < animationThreadhold) return;
         agentMovement.StopImmediately();
         agentController.ChangeState(Core.StateType.Normal);
     }
 
     public override void UpdateState()
     {
-        
+        timer += Time.deltaTime;
     }
 
 }

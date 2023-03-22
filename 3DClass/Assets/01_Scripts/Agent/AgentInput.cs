@@ -12,6 +12,8 @@ public class AgentInput : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsGround;
 
+    private Vector3 directionInput;
+
     private void Update()
     {
         UpdateMovement();
@@ -39,7 +41,8 @@ public class AgentInput : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        OnMovementKeyPress?.Invoke(new Vector3(horizontal, 0, vertical));
+        directionInput = new Vector3(horizontal, 0, vertical);
+        OnMovementKeyPress?.Invoke(directionInput);
     }
 
     public Vector3 GetMouseWorldPosition()
@@ -56,5 +59,11 @@ public class AgentInput : MonoBehaviour
         {
             return Vector3.zero;
         }
+    }
+
+    public Vector3 GetCurrentInputDirection()
+    {
+        Vector3 dir45 = Quaternion.Euler(0, -45, 0) * directionInput.normalized;
+        return dir45;
     }
 }

@@ -3,9 +3,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackState : CommonState
 {
+    public event Action<int> OnAttackStart = null;
+    public event Action OnAttackEnd = null;
+
     [SerializeField] private float keyDelay = 0.5f;
 
     private int currentCombo = 1; // 현재 콤보
@@ -14,7 +18,7 @@ public class AttackState : CommonState
 
     private float attackStartTime; // 공격이 시작된 시간 기록
     [SerializeField] private float attackSlideDuration = 0.2f, attackSlideSpeed = 0.1f; // 슬라이드 되는 시간, 스피드
-
+    
 
     public override void OnEnterState()
     {
@@ -40,6 +44,8 @@ public class AttackState : CommonState
         animator.SetAttackTrigger(false);
 
         agentMovement.IsActiveMove = true; // 키보드 이동 풀고
+
+        OnAttackEnd?.Invoke();
     }
 
     private void OnRollingHandle()
@@ -61,6 +67,7 @@ public class AttackState : CommonState
             canAttack = false;
             currentCombo++;
             animator.SetAttackTrigger(true);
+            OnAttackStart?.Invoke(currentCombo);
         }
     }
 

@@ -32,7 +32,21 @@ public class OffMeshClimb : MonoBehaviour
         OffMeshLinkData linkData = _navAgent.currentOffMeshLinkData;
         Vector3 start = linkData.startPos;
         Vector3 end = linkData.endPos;
-        yield return null;
+
+        float climeTime = Mathf.Abs(end.y - start.y) / _climbSpeed;
+        float curTime = 0;
+        float percent = 0;
+
+        while(percent < 1)
+        {
+            curTime += Time.deltaTime;
+            percent = curTime / climeTime;
+            transform.position = Vector3.Lerp(start, end, percent);
+            yield return null;
+        }
+
+        _navAgent.CompleteOffMeshLink();
+        _navAgent.isStopped = false;
     }
 
     private bool IsOnClimb()

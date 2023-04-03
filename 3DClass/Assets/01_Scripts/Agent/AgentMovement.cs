@@ -40,6 +40,7 @@ public class AgentMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(movementVelocity); // 갈 방향 보게 하기
         }
+
     }
 
     public void StopImmediately()

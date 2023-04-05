@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f54d699829bf7f6409e50a1a8ccf726a, type: 2}
 --- !u!1 &6728658
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 1043230911}
   - component: {fileID: 1043230910}
   - component: {fileID: 1043230914}
+  - component: {fileID: 1043230915}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -670,6 +671,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiState: {fileID: 1636959833}
+  targetTrm: {fileID: 1672779538}
+--- !u!195 &1043230915
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043230909}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1215761312
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +711,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1215761313
 MeshCollider:
@@ -813,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transitions: []
+  Actions: []
 --- !u!1 &1636959831
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1636959832}
   - component: {fileID: 1636959833}
+  - component: {fileID: 1636959834}
   m_Layer: 0
   m_Name: IdleState
   m_TagString: Untagged
@@ -860,6 +886,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Transitions:
   - {fileID: 6728660}
+  Actions: []
+--- !u!114 &1636959834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636959831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dffa3eda9c916479a0b5ecd4f30d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1672779534
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +1008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787875645}
   - component: {fileID: 1787875646}
+  - component: {fileID: 1787875647}
   m_Layer: 0
   m_Name: ChaseState
   m_TagString: Untagged
@@ -1006,3 +1046,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Transitions:
   - {fileID: 175109440}
+  Actions: []
+--- !u!114 &1787875647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787875644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b13818a1156da45971af3771dcd41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

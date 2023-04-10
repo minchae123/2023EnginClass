@@ -12,13 +12,19 @@ public class AgentAnimator : MonoBehaviour
     private readonly int isRollingHash = Animator.StringToHash("is_rolling");
 
     public event Action OnAnimationEndTrigger = null;
+    public event Action OnAnimationEventTrigger = null;
 
     private Animator animator;
-    public Animator Animator => Animator;
+    public Animator Animator => animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public void OnAnimationEvent()
+    {
+        OnAnimationEventTrigger?.Invoke();
     }
 
     public void SetRollingState(bool value)
@@ -52,7 +58,6 @@ public class AgentAnimator : MonoBehaviour
             animator.ResetTrigger(attackHash);
         }
     }
-
 
     public void OnAnimationEnd()
     {

@@ -9,8 +9,21 @@ public class EnemyController : MonoBehaviour
     private Transform targetTrm;
     public Transform TargetTrm => targetTrm;
 
+    private NavAgentMovement navMovement;
+    public NavAgentMovement NavMovement => navMovement;
+
+    private AgentAnimator agentAnimator;
+    public AgentAnimator AgentAnimator => agentAnimator;
+
+    private EnemyVFXManager vFXManager;
+    public EnemyVFXManager VFXManager => vFXManager;
+
     protected virtual void Awake()
     {
+        navMovement = GetComponent<NavAgentMovement>();
+        agentAnimator = transform.Find("Visual").GetComponent<AgentAnimator>();
+        vFXManager = GetComponent<EnemyVFXManager>();
+
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 

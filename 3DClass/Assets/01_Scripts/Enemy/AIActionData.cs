@@ -8,4 +8,6 @@ public class AIActionData : MonoBehaviour
     public Vector3 HitPoint;
     public Vector3 HitNormal;
     public Vector3 LastSpot;
+    public bool IsArrived;
+    public bool IsAttacking;
 }

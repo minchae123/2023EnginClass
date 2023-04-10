@@ -17,6 +17,8 @@ public class AgentMovement : MonoBehaviour
 
     private AgentAnimator animator;
 
+    private Vector3 inputVelocity;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -25,18 +27,19 @@ public class AgentMovement : MonoBehaviour
 
     public void SetMovementVelocity(Vector3 value)
     {
+        inputVelocity = value;
         movementVelocity = value;
     }
 
     public void CalculatePlayerMovement()
     {
-        animator?.SetSpeed(MovementVelocity.sqrMagnitude);
-        movementVelocity.Normalize();
+        animator?.SetSpeed(inputVelocity.sqrMagnitude);
+        inputVelocity.Normalize();
 
-        movementVelocity *= moveSpeed * Time.deltaTime;
+        movementVelocity = inputVelocity * (moveSpeed * Time.fixedDeltaTime);
         movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
 
-        if(movementVelocity.sqrMagnitude > 0)
+        if (movementVelocity.sqrMagnitude > 0)
         {
             transform.rotation = Quaternion.LookRotation(movementVelocity); // 갈 방향 보게 하기
         }

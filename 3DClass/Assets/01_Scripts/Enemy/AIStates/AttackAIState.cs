@@ -39,18 +39,29 @@ public class AttackAIState : CommonAIState
 
     public override void UpdateState()
     {
-        base.UpdateState();
-
         if(aiActionData.IsAttacking == false)
         {
             SetTarget();
-            Quaternion rot = Quaternion.LookRotation(targetVector);
-            transform.rotation = rot;
 
-            aiActionData.IsAttacking = true;
-            enemyController.AgentAnimator.SetAttackState(true);
-            enemyController.AgentAnimator.SetAttackTrigger(true);
+            Vector3 curFrontVector = transform.forward; // 캐릭터 전방
+            float angle = Vector3.Angle(curFrontVector, targetVector);
+
+            if(angle >= 10)
+            {
+                Vector3 result = Vector3.Cross(curFrontVector, targetVector);
+
+                float sign = result.y > 0 ? 1 : -1;
+                enemyController.transform.rotation = Quaternion.Euler(0, sign * rotateSpeed * Time.deltaTime, 0) * enemyController.transform.rotation;
+            }
+            else
+            {
+                aiActionData.IsAttacking = true;
+                enemyController.AgentAnimator.SetAttackState(true);
+                enemyController.AgentAnimator.SetAttackTrigger(true);
+            }
         }
+
+        base.UpdateState();
     }
 
     private void SetTarget()

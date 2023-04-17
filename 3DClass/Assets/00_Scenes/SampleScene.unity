@@ -1719,7 +1719,7 @@ MonoBehaviour:
   casterInterpolation: 0.5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!1001 &696099553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2189,6 +2189,7 @@ GameObject:
   - component: {fileID: 810603406}
   - component: {fileID: 810603407}
   - component: {fileID: 810603408}
+  - component: {fileID: 810603409}
   m_Layer: 8
   m_Name: HammerEnemy
   m_TagString: Untagged
@@ -2204,7 +2205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810603403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1809423, y: -0.3, z: -0.69}
+  m_LocalPosition: {x: 3.1809423, y: -0.02, z: -0.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2274,6 +2275,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footStep: {fileID: 1847961131}
+--- !u!143 &810603409
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810603403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0.2}
 --- !u!1001 &810727856
 PrefabInstance:
   m_ObjectHideFlags: 0

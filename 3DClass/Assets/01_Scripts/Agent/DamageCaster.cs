@@ -13,7 +13,17 @@ public class DamageCaster : MonoBehaviour
 
     public void CastDamage()
     {
-
+        Vector3 startpos = transform.position - transform.forward * casterRadius;
+        RaycastHit hit;
+        bool isHit = Physics.SphereCast(startpos, casterRadius, transform.forward, out hit, casterRadius + casterInterpolation, targetLayer);
+        if (isHit)
+        {
+            Debug.Log($"맞았다 : {hit.collider.name}");
+        }
+        else
+        {
+            Debug.Log("안맞음");
+        }
     }
 
 #if UNITY_EDITOR

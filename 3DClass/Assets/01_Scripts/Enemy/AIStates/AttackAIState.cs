@@ -8,6 +8,7 @@ public class AttackAIState : CommonAIState
     [SerializeField] private float rotateSpeed = 720f;
 
     protected Vector3 targetVector;
+    private bool IsAttack = false;
 
     public override void OnEnterState()
     {
@@ -15,6 +16,8 @@ public class AttackAIState : CommonAIState
         enemyController.AgentAnimator.OnAnimationEventTrigger += AttackAnimationEndHandle;
         enemyController.AgentAnimator.OnAnimationEventTrigger += AttackCollsionHandle;
         aiActionData.IsAttacking = false;
+
+        IsAttack = true;
     }
 
     public override void OnExitState()
@@ -24,6 +27,7 @@ public class AttackAIState : CommonAIState
 
         enemyController.AgentAnimator.SetAttackState(false);
         enemyController.AgentAnimator.SetAttackTrigger(false);
+        IsAttack = false;
     }
 
     private void AttackAnimationEndHandle()
@@ -39,7 +43,7 @@ public class AttackAIState : CommonAIState
 
     public override void UpdateState()
     {
-        if(aiActionData.IsAttacking == false)
+        if(aiActionData.IsAttacking == false && IsAttack)
         {
             SetTarget();
 

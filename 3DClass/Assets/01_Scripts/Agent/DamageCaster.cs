@@ -10,6 +10,8 @@ public class DamageCaster : MonoBehaviour
     [SerializeField] private float casterInterpolation = 0.5f;
     [SerializeField] private LayerMask targetLayer;
 
+    private int damage = 2;
+
 
     public void CastDamage()
     {
@@ -19,6 +21,10 @@ public class DamageCaster : MonoBehaviour
         if (isHit)
         {
             Debug.Log($"¸Â¾Ò´Ù : {hit.collider.name}");
+            if(hit.collider.TryGetComponent<IDamageable>(out IDamageable health))
+            {
+                health.OnDamage(damage, hit.point, hit.normal);
+            }
         }
         else
         {

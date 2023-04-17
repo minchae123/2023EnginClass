@@ -121,7 +121,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.13880843
+      - time: 0.12543051
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -164,15 +164,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.5571076
-        functionName: OnAnimationEnd
+      - time: 0.15102766
+        functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.17109455
-        functionName: OnAnimationEvent
+      - time: 0.5571076
+        functionName: OnAnimationEnd
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -207,7 +207,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.27145743
+      - time: 0.2948688
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {instanceID: 0}

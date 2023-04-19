@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] EnemyDataSO enemyData;
+    public EnemyDataSO EnemyData => enemyData;
     [SerializeField] private CommonAIState currentState;
     
     private Transform targetTrm;
@@ -18,12 +21,17 @@ public class EnemyController : MonoBehaviour
     private EnemyVFXManager vFXManager;
     public EnemyVFXManager VFXManager => vFXManager;
 
+    public EnemyHealth EnemyHealthCompo { get; private set; }
+
+    public bool isDead = false;
+
     protected virtual void Awake()
     {
         navMovement = GetComponent<NavAgentMovement>();
         agentAnimator = transform.Find("Visual").GetComponent<AgentAnimator>();
         vFXManager = GetComponent<EnemyVFXManager>();
 
+        EnemyHealthCompo = GetComponent<EnemyHealth>();
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 
@@ -33,6 +41,8 @@ public class EnemyController : MonoBehaviour
     protected virtual void Start()
     {
         targetTrm = GameManager.Instance.PlayerTrm;
+        navMovement.SetSpeed(enemyData.moveSpeed); // 이속 설정
+        EnemyHealthCompo.SetMaxHP(enemyData.maxHP); // 체력 설정
     }
 
     public void ChangeState(CommonAIState state)
@@ -44,6 +54,25 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (isDead) return;
         currentState?.UpdateState();
+    }
+
+    public UnityEvent OnAfterDeathTrigger = null;
+    public void SetDead()
+    {
+        isDead = true;
+        navMovement.StopNavigation();
+        agentAnimator.StopAnimation(true);
+        navMovement.KnockBack(() =>
+        {
+            agentAnimator.StopAnimation(false);
+            agentAnimator.SetDead();
+
+            MonoFunction.Instance.AddCoroutine(() =>
+            {
+                OnAfterDeathTrigger?.Invoke();
+            }, 1.5f);
+        });
     }
 }

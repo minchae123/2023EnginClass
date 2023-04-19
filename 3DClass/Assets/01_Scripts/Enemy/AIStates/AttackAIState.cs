@@ -9,6 +9,16 @@ public class AttackAIState : CommonAIState
 
     protected Vector3 targetVector;
     private bool IsAttack = false;
+    private int atkDamage = 1;
+    private float atkCoolTime = 0.2f;
+
+    public override void SetUp(Transform agentRoot)
+    {
+        base.SetUp(agentRoot);
+        rotateSpeed = enemyController.EnemyData.rotateSpeed;
+        atkDamage = enemyController.EnemyData.atkDamage;
+        atkCoolTime = enemyController.EnemyData.atkCoolTime;
+    }
 
     public override void OnEnterState()
     {
@@ -33,7 +43,7 @@ public class AttackAIState : CommonAIState
     private void AttackAnimationEndHandle()
     {
         enemyController.AgentAnimator.SetAttackState(false);
-        aiActionData.IsAttacking = false;
+        MonoFunction.Instance.AddCoroutine(() => { aiActionData.IsAttacking = false; }, atkCoolTime);
     }
 
     private void AttackCollsionHandle()

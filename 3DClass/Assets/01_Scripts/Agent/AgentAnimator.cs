@@ -10,6 +10,8 @@ public class AgentAnimator : MonoBehaviour
     private readonly int attackHash = Animator.StringToHash("attack");
     private readonly int isAttackHash = Animator.StringToHash("is_attack");
     private readonly int isRollingHash = Animator.StringToHash("is_rolling");
+    private readonly int isDeadHash = Animator.StringToHash("is_dead");
+    private readonly int deadTriggerHash = Animator.StringToHash("dead");
 
     public event Action OnAnimationEndTrigger = null;
     public event Action OnAnimationEventTrigger = null;
@@ -62,5 +64,16 @@ public class AgentAnimator : MonoBehaviour
     public void OnAnimationEnd()
     {
         OnAnimationEndTrigger?.Invoke();
+    }
+
+    public void StopAnimation(bool value)
+    {
+        animator.speed = value ? 0 : 1; 
+    }
+
+    public void SetDead()
+    {
+        animator.SetBool(isDeadHash, true);
+        animator.SetTrigger(deadTriggerHash);
     }
 }

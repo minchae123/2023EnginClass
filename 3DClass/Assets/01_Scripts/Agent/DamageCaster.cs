@@ -10,7 +10,7 @@ public class DamageCaster : MonoBehaviour
     [SerializeField] private float casterInterpolation = 0.5f;
     [SerializeField] private LayerMask targetLayer;
 
-    private int damage = 2;
+    private int damage = 10;
 
 
     public void CastDamage()

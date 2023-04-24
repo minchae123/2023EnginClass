@@ -1008,6 +1008,7 @@ GameObject:
   - component: {fileID: 512959520}
   - component: {fileID: 512959522}
   - component: {fileID: 512959523}
+  - component: {fileID: 512959524}
   m_Layer: 8
   m_Name: FeedbackHit
   m_TagString: Untagged
@@ -1084,6 +1085,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1701259389}
   blinkTime: 0.2
+--- !u!114 &512959524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512959518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac314b5ea9511f47a592d80d08f6a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashEffect: {fileID: 121802345280418740, guid: d1fe802ee7b6fc24497016910b9375d6, type: 3}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  hitColor: {r: 0.26666668, g: 0.9725491, b: 0.69411767, a: 0}
 --- !u!4 &534060503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
@@ -2277,7 +2295,7 @@ GameObject:
   - component: {fileID: 789811342}
   - component: {fileID: 789811341}
   m_Layer: 8
-  m_Name: FeedbackDead
+  m_Name: FeedbackAfterDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2365,6 +2383,7 @@ Transform:
   - {fileID: 696893738}
   - {fileID: 512959519}
   - {fileID: 789811340}
+  - {fileID: 850400697}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2484,6 +2503,18 @@ MonoBehaviour:
       - m_Target: {fileID: 810603405}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: SetDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 850400699}
+        m_TargetAssemblyTypeName: FeedbackPlayer, LibAssembly
+        m_MethodName: PlayFeedback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2710,6 +2741,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d16d7cec88c7e5d409a772f03a3595cb, type: 3}
+--- !u!1 &850400696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 850400697}
+  - component: {fileID: 850400699}
+  - component: {fileID: 850400698}
+  m_Layer: 8
+  m_Name: FeedbackDead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &850400697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850400696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810603404}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &850400698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850400696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6c99c4333bc6a4ebbb26398ef05f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeTimeDelay: 0.05
+  unFreezeTimeDealy: 0.02
+  timeFreezeValue: 0.2
+--- !u!114 &850400699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850400696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e553ccdc633be442bd340f4371e571b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &853593298
 GameObject:
   m_ObjectHideFlags: 0

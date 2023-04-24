@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
             return playerTrm;
         }
     }
+
     private void Awake()
     {
         if(Instance != null)
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         CreatePool();
+        CreateTImeController();
+    }
+
+    private void CreateTImeController()
+    {
+        TimeController.Instance = gameObject.AddComponent<TimeController>();
     }
 
     private void CreatePool()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5091917010390914829}
   - component: {fileID: 5091917010390914819}
   - component: {fileID: 5091917010390914828}
-  - component: {fileID: 4342851155525522218}
+  - component: {fileID: 121802345280418740}
   m_Layer: 0
   m_Name: VFXSplash
   m_TagString: Untagged
@@ -117,7 +117,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4342851155525522218
+--- !u!114 &121802345280418740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,9 +126,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5091917010390914830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d4b03cd28bb9b4ea94454ebd7dce9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a6ab0f7f21ceb4494b55aaf93db603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: []
-  _effects:
+  particles: []
+  effects:
   - {fileID: 5091917010390914819}

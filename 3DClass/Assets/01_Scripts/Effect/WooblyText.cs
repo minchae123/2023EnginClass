@@ -6,6 +6,7 @@ using TMPro;
 public class WooblyText : MonoBehaviour
 {
     private TMP_Text tmpText;
+    [SerializeField][Range(0,50f)] private float speed;
 
     private void Awake()
     {
@@ -61,11 +62,11 @@ public class WooblyText : MonoBehaviour
             }
             Vector3[] vertices = textinfo.meshInfo[cInfo.materialReferenceIndex].vertices;
 
-            int vIdx0 = cInfo.vertexIndex;
-            for (int j = 0; j < 4; j++)
+            int vIdx0 = cInfo.vertexIndex + 1;
+            for (int j = 0; j < 2; j++)
             {
-                Vector3 origin = vertices[vIdx0 + j];
-                vertices[vIdx0 + j] = origin + new Vector3(0, Mathf.Sin(Time.time * 2f + origin.x), 0);
+                    Vector3 origin = vertices[vIdx0 + j];
+                    vertices[vIdx0 + j] = origin + new Vector3(0, Mathf.Sin(Time.time * speed + origin.x) + 0.5f, 0);
             }
 
         }

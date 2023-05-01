@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/10_UI/MainUI.uss?fileID=7433441132597879392&amp;guid=a5de953d0ac182b4c9b683c37569106e&amp;type=3#MainUI" />
+    <ui:Button text="버튼" display-tooltip-when-elided="true" enable-rich-text="true" name="BtnOpen" class="btn" style="position: absolute; top: 20px; right: 20px;" />
+    <ui:VisualElement style="width: 100%; height: 100%;">
+        <ui:VisualElement name="PopupPanel" />
+    </ui:VisualElement>
+</ui:UXML>

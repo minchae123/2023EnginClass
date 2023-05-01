@@ -12,6 +12,8 @@
     border-bottom-right-radius: 5px;
     transition-duration: 0.5s, 0.5s;
     transition-property: background-color, scale;
+    -unity-font: url('project://database/Assets/09_Fonts/neodgm_code.ttf?fileID=12800000&guid=1315e2225503142409a42c0a4a1f0865&type=3#neodgm_code');
+    -unity-font-definition: url('project://database/Assets/09_Fonts/neodgm_code%20SDF.asset?fileID=11400000&guid=367ff3d04fbbadc46874bb2063994c3b&type=2#neodgm_code SDF');
 }
 
 .btn:hover {
@@ -27,4 +29,27 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    border-top-width: 700px;
+    margin-top: 0;
+    top: -700px;
+    transition-property: top;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-out-bounce;
+}
+
+#PopupWindow {
+    background-color: rgba(29, 29, 29, 0.43);
+    visibility: hidden;
+    opacity: 0;
+    transition-property: opacity, visibility;
+    transition-duration: 0.5s, 0.8s;
+}
+
+#PopupWindow.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+#PopupWindow.open > #PopupPanel {
+    top: 0;
 }

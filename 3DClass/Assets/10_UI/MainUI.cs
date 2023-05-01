@@ -16,10 +16,21 @@ public class MainUI : MonoBehaviour
     {
         VisualElement root = uiDocument.rootVisualElement;
 
-        Button btn = root.Q<Button>("BtnOpen");
-        btn.RegisterCallback<ClickEvent>(e =>
+        Button btnO = root.Q<Button>("BtnOpen");
+
+        VisualElement popupWindow = root.Q("PopupWindow");
+
+        btnO.RegisterCallback<ClickEvent>(e =>
         {
-            Debug.Log("버튼 클릭");
+            Time.timeScale = 0;
+            popupWindow.AddToClassList("open");
+        });
+
+        Button btnC = root.Q<Button>("BtnClose");
+        btnC.RegisterCallback<ClickEvent>(e =>
+        {
+            Time.timeScale = 1;
+            popupWindow.RemoveFromClassList("open");
         });
     }
 }

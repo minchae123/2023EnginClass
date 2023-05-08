@@ -20,33 +20,37 @@ public class DamageCaster : MonoBehaviour
     public void CastDamage()
     {
         Vector3 startpos = transform.position - transform.forward * casterRadius;
-        RaycastHit hit;
-        bool isHit = Physics.SphereCast(startpos, casterRadius, transform.forward, out hit, casterRadius + casterInterpolation, targetLayer);
-        if (isHit)
+        RaycastHit[] hit;
+        for(int i = 0; i < hit.Length; i++)
         {
-            if(hit.collider.TryGetComponent<IDamageable>(out IDamageable health))
+            bool isHit = Physics.SphereCastAll(startpos, casterRadius, transform.forward, out hit, casterRadius + casterInterpolation, targetLayer);
+            if (isHit)
             {
-                int damage = _controller.CharData.BaseDamage;
-                float critical = _controller.CharData.BaseCritical;
-                float criticalDamage = _controller.CharData.BaseCriticalDamage;
-
-                float dice = Random.value;
-                int fontSize = 10;
-                Color fontColor = Color.white;
-
-                if(dice < critical)
+                if(hit.collider.TryGetComponent<IDamageable>(out IDamageable health))
                 {
-                    damage = Mathf.CeilToInt(damage * criticalDamage);
-                    fontSize = 15;
-                    fontColor = Color.red;
+                    int damage = _controller.CharData.BaseDamage;
+                    float critical = _controller.CharData.BaseCritical;
+                    float criticalDamage = _controller.CharData.BaseCriticalDamage;
+
+                    float dice = Random.value;
+                    int fontSize = 10;
+                    Color fontColor = Color.white;
+
+                    if(dice < critical)
+                    {
+                        damage = Mathf.CeilToInt(damage * criticalDamage);
+                        fontSize = 15;
+                        fontColor = Color.red;
+                    }
+
+                    health.OnDamage(damage, hit.point, hit.normal);
+
+                    PopupText pTxt = PoolManager.Instance.Pop("PopupText") as PopupText;
+                    pTxt.StartPopup(text: damage.ToString(), pos: hit.point + new Vector3(0, 2f, 0), fontSize: fontSize, color: fontColor);
+
                 }
-
-                health.OnDamage(damage, hit.point, hit.normal);
-
-                PopupText pTxt = PoolManager.Instance.Pop("PopupText") as PopupText;
-                pTxt.StartPopup(text: damage.ToString(), pos: hit.point + new Vector3(0, 2f, 0), fontSize: fontSize, color: fontColor);
-
             }
+
         }
     }
 

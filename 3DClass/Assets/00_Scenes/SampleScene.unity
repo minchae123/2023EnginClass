@@ -3039,6 +3039,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initPoolList: {fileID: 11400000, guid: 74b322c7256ae984abc4a11db74ba3d3, type: 2}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1163671222
 MonoBehaviour:
   m_ObjectHideFlags: 0

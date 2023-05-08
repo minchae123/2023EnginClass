@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public Action<int, int> OnHealthChanged;
 
-    [SerializeField] private bool isDead = false;
+    private EnemyController _controller;
 
     public int maxHP;
     private int curHP;
@@ -20,7 +20,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void SetMaxHP(int value)
     {
         curHP = maxHP = value;
-        isDead = false;
     }
 
     private void Awake()
@@ -30,17 +29,27 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void OnDamage(int damage, Vector3 point, Vector3 nomal)
     {
+        if ( _controller.isDead ) return;
+
         aiActionData.HitPoint = point;
         aiActionData.HitNormal = nomal;
         OnHitTriggered?.Invoke();
 
         curHP -= damage;
+        curHP = Mathf.Clamp(curHP, 0, maxHP);
+
         if(curHP <= 0)
         {
-            isDead = true;
             OnDeadTriggered?.Invoke();
         }
 
+        UIManager.Instance.Subscribe(this);
+
         OnHealthChanged?.Invoke(curHP, maxHP);
+    }
+
+    public void SetInit(EnemyController controller)
+    {
+        _controller = controller; 
     }
 }

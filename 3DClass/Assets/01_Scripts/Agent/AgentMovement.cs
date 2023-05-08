@@ -7,7 +7,7 @@ public class AgentMovement : MonoBehaviour
 {
     public bool IsActiveMove = true; // 키보드로 이동하냐 아니냐
 
-    [SerializeField] private float moveSpeed = 8f, gravity = -9.8f;
+    [SerializeField] private float  gravity = -9.8f;
 
     private CharacterController characterController;
 
@@ -16,6 +16,7 @@ public class AgentMovement : MonoBehaviour
     private float verticalVelocity; // 중력속도
 
     private AgentAnimator animator;
+    private AgentController _controller;
 
     private Vector3 inputVelocity;
 
@@ -23,6 +24,11 @@ public class AgentMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = transform.Find("Visual").GetComponent<AgentAnimator>();
+    }
+
+    public void SetInit(AgentController controller)
+    {
+        _controller = controller;
     }
 
     public void SetMovementVelocity(Vector3 value)
@@ -36,6 +42,7 @@ public class AgentMovement : MonoBehaviour
         animator?.SetSpeed(inputVelocity.sqrMagnitude);
         inputVelocity.Normalize();
 
+        float moveSpeed = _controller.CharData.MoveSpeed;
         movementVelocity = inputVelocity * (moveSpeed * Time.fixedDeltaTime);
         movementVelocity = Quaternion.Euler(0, -45f, 0) * movementVelocity;
 

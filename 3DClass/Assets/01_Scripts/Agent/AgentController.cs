@@ -6,8 +6,16 @@ using System;
 
 public class AgentController : MonoBehaviour
 {
+    [SerializeField] private CharacterDataSO charData;
+    public CharacterDataSO CharData => charData;
+
     private Dictionary<StateType, Istate> stateDictionary = null;
     private Istate currentState; // 현재 상태 저장
+
+    public String CurrentState;
+
+    public AgentMovement AgentMovementCompo { get; private set; }
+    public DamageCaster DamageCasterCompo { get; private set; }
 
     private void Awake()
     {
@@ -26,6 +34,12 @@ public class AgentController : MonoBehaviour
 
             stateDictionary.Add(state, stateScript);
         }
+
+        AgentMovementCompo = GetComponent<AgentMovement>();
+        AgentMovementCompo.SetInit(this);
+
+        DamageCasterCompo = transform.Find("DamageCaster").GetComponent<DamageCaster>();
+        DamageCasterCompo.SetInit(this);
     }
 
     private void Start()

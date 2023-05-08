@@ -6,11 +6,11 @@ using UnityEngine.VFX;
 
 public class PlayerVFXManager : MonoBehaviour
 {
-    [SerializeField]
-    private ParticleSystem[] blades;
+    [SerializeField] private ParticleSystem[] blades;
 
     [SerializeField] private VisualEffect footStep;
 
+    [SerializeField] private VisualEffect healEffect;
     private AttackState atkState;
 
     private void Awake()
@@ -44,5 +44,10 @@ public class PlayerVFXManager : MonoBehaviour
             p.Simulate(0);
             p.Stop();
         }
+    }
+
+    public void PlayHealEffect(int value)
+    {
+        healEffect.Play();
     }
 }

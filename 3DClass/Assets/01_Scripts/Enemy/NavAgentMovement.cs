@@ -80,6 +80,13 @@ public class NavAgentMovement : MonoBehaviour
         return ratio < 1;
     }
 
+    public void ResetNavAgent()
+    {
+        characterController.enabled = true;
+        navAgent.enabled = true;
+        navAgent.isStopped = false;
+    }
+
     private void FixedUpdate()
     {
         if (isControllerMode == false) return;

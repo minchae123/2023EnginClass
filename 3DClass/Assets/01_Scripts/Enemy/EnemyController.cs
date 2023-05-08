@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : PoolableMono
 {
     [SerializeField] EnemyDataSO enemyData;
     public EnemyDataSO EnemyData => enemyData;
@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
 
     public bool isDead = false;
 
+    private CommonAIState initState;
+
     protected virtual void Awake()
     {
         navMovement = GetComponent<NavAgentMovement>();
@@ -32,10 +34,13 @@ public class EnemyController : MonoBehaviour
         vFXManager = GetComponent<EnemyVFXManager>();
 
         EnemyHealthCompo = GetComponent<EnemyHealth>();
+        EnemyHealthCompo.SetInit(this);
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 
         states.ForEach(s => s.SetUp(transform));
+
+        initState = currentState;
     }
 
     protected virtual void Start()
@@ -74,5 +79,18 @@ public class EnemyController : MonoBehaviour
                 OnAfterDeathTrigger?.Invoke();
             }, 1.5f);
         });
+    }
+
+    public override void Init()
+    {
+        isDead = false;
+        EnemyHealthCompo.SetMaxHP(enemyData.maxHP);
+        navMovement.ResetNavAgent();
+        ChangeState(initState);
+    }
+
+    public void GotoPool()
+    {
+        PoolManager.Instance.Push(this);
     }
 }

@@ -1,9 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/10_UI/MainUI.uss?fileID=7433441132597879392&amp;guid=a5de953d0ac182b4c9b683c37569106e&amp;type=3#MainUI" />
-    <ui:Button text="버튼" display-tooltip-when-elided="true" enable-rich-text="true" name="BtnOpen" class="btn" style="position: absolute; top: 20px; right: 20px;" />
-    <ui:VisualElement name="PopupWindow" style="width: 100%; height: 100%; align-items: center; justify-content: center;">
-        <ui:VisualElement name="PopupPanel" style="border-top-width: 0;">
-            <ui:Button text="닫기" display-tooltip-when-elided="true" enable-rich-text="true" name="BtnClose" class="btn" style="position: absolute; top: 20px; right: auto; left: 20px; background-color: rgb(255, 32, 0);" />
+    <ui:VisualElement name="EnemyContainer" style="width: 100%; align-items: center; justify-content: flex-end;">
+        <ui:VisualElement name="HPBarRect" style="background-color: rgb(7, 82, 89);">
+            <ui:VisualElement name="Bar" style="width: 100%; height: 100%; background-color: rgb(34, 113, 120); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; scale: 1 1; transform-origin: left; transition-property: scale; transition-duration: 0.2s;" />
+            <ui:VisualElement name="TextContainer" style="flex-direction: row; justify-content: space-between; position: absolute; bottom: 10px; left: 10px; width: 100%; padding-right: 10px;">
+                <ui:Label text="HammerEnemy01" display-tooltip-when-elided="true" name="EnemyName" class="hpText" />
+                <ui:Label text="100/100" display-tooltip-when-elided="true" name="HPText" class="hpText" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

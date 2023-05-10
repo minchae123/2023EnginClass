@@ -22,10 +22,11 @@ public class ChaseAIState : CommonAIState
         enemyController.VFXManager.PlayFootStep();
     }
 
-    public override void UpdateState()
+    public override bool UpdateState()
     {
         enemyController.NavMovement.MoveToTarget(aiActionData.LastSpot);
         aiActionData.IsArrived = enemyController.NavMovement.CheckisArrived();
-        base.UpdateState();
+        return base.UpdateState();
+
     }
 }

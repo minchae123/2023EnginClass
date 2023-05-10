@@ -20,14 +20,17 @@ public class DamageCaster : MonoBehaviour
     public void CastDamage()
     {
         Vector3 startpos = transform.position - transform.forward * casterRadius;
-        RaycastHit[] hit;
-        for(int i = 0; i < hit.Length; i++)
+
+        RaycastHit[] hitArr = Physics.SphereCastAll(startpos, casterRadius, transform.forward, casterRadius + casterInterpolation, targetLayer);
+        foreach(RaycastHit hit in hitArr)
         {
-            bool isHit = Physics.SphereCastAll(startpos, casterRadius, transform.forward, out hit, casterRadius + casterInterpolation, targetLayer);
-            if (isHit)
-            {
                 if(hit.collider.TryGetComponent<IDamageable>(out IDamageable health))
                 {
+                    if(hit.point.sqrMagnitude == 0)
+                    {
+                        continue;
+                    }
+
                     int damage = _controller.CharData.BaseDamage;
                     float critical = _controller.CharData.BaseCritical;
                     float criticalDamage = _controller.CharData.BaseCriticalDamage;
@@ -47,10 +50,7 @@ public class DamageCaster : MonoBehaviour
 
                     PopupText pTxt = PoolManager.Instance.Pop("PopupText") as PopupText;
                     pTxt.StartPopup(text: damage.ToString(), pos: hit.point + new Vector3(0, 2f, 0), fontSize: fontSize, color: fontColor);
-
                 }
-            }
-
         }
     }
 

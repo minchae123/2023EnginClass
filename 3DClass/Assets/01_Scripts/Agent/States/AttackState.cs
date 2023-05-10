@@ -84,7 +84,7 @@ public class AttackState : CommonState
         }
     }
 
-    public override void UpdateState()
+    public override bool UpdateState()
     {
         if(Time.time < attackStartTime + attackSlideDuration) // 슬라이드가 되고 있어야하는 시간
         {
@@ -103,5 +103,6 @@ public class AttackState : CommonState
                 agentController.ChangeState(StateType.Normal);
             }
         }
+        return true;
     }
 }

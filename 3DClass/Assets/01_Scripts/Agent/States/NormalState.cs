@@ -45,8 +45,8 @@ public class NormalState : CommonState
     }*/
 
 
-    public override void UpdateState()
+    public override bool UpdateState()
     {
-
+        return true;
     }
 }

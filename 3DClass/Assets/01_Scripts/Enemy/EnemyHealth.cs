@@ -33,6 +33,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         aiActionData.HitPoint = point;
         aiActionData.HitNormal = nomal;
+        aiActionData.IsHit = true;
+
         OnHitTriggered?.Invoke();
 
         curHP -= damage;

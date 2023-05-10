@@ -8,6 +8,7 @@ public class EnemyController : PoolableMono
     [SerializeField] EnemyDataSO enemyData;
     public EnemyDataSO EnemyData => enemyData;
     [SerializeField] private CommonAIState currentState;
+    public CommonAIState CurrentState => currentState;
     
     private Transform targetTrm;
     public Transform TargetTrm => targetTrm;
@@ -27,6 +28,9 @@ public class EnemyController : PoolableMono
 
     private CommonAIState initState;
 
+    private List<AITransition> anyTransitions = new List<AITransition>();
+    public List<AITransition> AnyTransitions => anyTransitions;
+
     protected virtual void Awake()
     {
         navMovement = GetComponent<NavAgentMovement>();
@@ -39,6 +43,13 @@ public class EnemyController : PoolableMono
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 
         states.ForEach(s => s.SetUp(transform));
+
+        Transform anyTranTrm = transform.Find("AI/AnyTransitions");
+        if(anyTranTrm != null)
+        {
+            anyTranTrm.GetComponentsInChildren<AITransition>(anyTransitions);
+            anyTransitions.ForEach(s => s.SetUp(transform));
+        }
 
         initState = currentState;
     }

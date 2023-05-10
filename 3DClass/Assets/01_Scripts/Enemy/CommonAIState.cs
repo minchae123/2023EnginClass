@@ -21,15 +21,26 @@ public abstract class CommonAIState : MonoBehaviour, Istate
         transitions.ForEach(t => t.SetUp(agentRoot));
     }
 
-    public virtual void UpdateState()
+    public virtual bool UpdateState()
     {
         foreach(AITransition t  in transitions)
         {
             if (t.CheckTransition())
             {
                 enemyController.ChangeState(t.NextState);
-                break;
+                return true;
             }
         }
+
+        foreach(AITransition t in enemyController.AnyTransitions)
+        {
+            if (t.CheckTransition())
+            {
+                enemyController.ChangeState(t.NextState);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

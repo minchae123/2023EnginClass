@@ -51,8 +51,13 @@ public class AttackAIState : CommonAIState
         
     }
 
-    public override void UpdateState()
+    public override bool UpdateState()
     {
+        if (base.UpdateState())
+        {
+            return true;
+        }
+
         if(aiActionData.IsAttacking == false && IsAttack)
         {
             SetTarget();
@@ -74,8 +79,7 @@ public class AttackAIState : CommonAIState
                 enemyController.AgentAnimator.SetAttackTrigger(true);
             }
         }
-
-        base.UpdateState();
+        return false;
     }
 
     private void SetTarget()

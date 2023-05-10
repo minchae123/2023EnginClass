@@ -44,9 +44,10 @@ public class RollingState : CommonState
         agentController.ChangeState(Core.StateType.Normal);
     }
 
-    public override void UpdateState()
+    public override bool UpdateState()
     {
         timer += Time.deltaTime;
+        return true;
     }
 
 }

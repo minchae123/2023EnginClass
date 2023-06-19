@@ -31,7 +31,7 @@ public class NavAgentMovement : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        navAgent.speed = speed; // ÀÌµ¿ ¼Óµµ¿¡ ¸ÂÃç ½ÇÇà
+        navAgent.speed = speed; // ï¿½Ìµï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void MoveToTarget(Vector3 pos)
@@ -50,12 +50,12 @@ public class NavAgentMovement : MonoBehaviour
 
     public void StopImmediately()
     {
-        navAgent.SetDestination(transform.position); // ÀÚ±â ÀÚ½ÅÀ» ¸ñÀûÁö·Î ³õÀ¸¸é ¹Ù·Î Á¤ÁöµÊ
+        navAgent.SetDestination(transform.position); // ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     public void StopNavigation()
     {
-        navAgent.isStopped = true; // ³×ºê ¿¡ÀÌÀüÆ® ¸ØÃã
+        navAgent.isStopped = true; // ï¿½×ºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     }
 
     public void KnockBack(Action endAction = null)

@@ -33,10 +33,8 @@ public class PopupText : PoolableMono
         {
             curTime += Time.deltaTime;
             percent += curTime / time;
-            //float nextY = Mathf.Lerp(0, yDelta, percent);
             float nextOpacity = Mathf.Lerp(1, 0, percent);
 
-            //float value = EaseOutElastic(percent);
             float value = EaseInExpo(percent);
 
             transform.position = firstPos + new Vector3(0, yDelta * value, 0);
@@ -46,7 +44,6 @@ public class PopupText : PoolableMono
             transform.rotation = Quaternion.LookRotation(camDir);
             yield return null;
         }
-
         PoolManager.Instance.Push(this);
     }
 

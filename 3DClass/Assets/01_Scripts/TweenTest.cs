@@ -10,9 +10,12 @@ public class TweenTest : MonoBehaviour
     private LineRenderer lineRenderer;
     List<Vector3> pointList = new List<Vector3>();
 
+    private Transform coinTrm;
+
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        coinTrm = transform.Find("CoinTemplate");
     }
 
     private void Update()
@@ -25,6 +28,20 @@ public class TweenTest : MonoBehaviour
             lineRenderer.SetPositions(pointList.ToArray());
 
             StartCoroutine(MoveCube(2));
+        }
+
+        if(Input.GetKeyDown(KeyCode.O)) // 코인 생성기
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Vector2 pos = Random.insideUnitCircle * 2;
+                Vector3 targetPos = transform.position + new Vector3(pos.x, 0, pos.y);
+                
+                Transform trm = Instantiate(coinTrm, transform);
+                
+                trm.gameObject.SetActive(true);
+                trm.DOJump(targetPos, 4f, 1, 1.2f).SetEase(Ease.InQuad);
+            }
         }
     }
 

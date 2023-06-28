@@ -9,4 +9,21 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="TopUIBar" style="margin-top: 20px; margin-left: 0;">
+        <ui:VisualElement name="ProfileBox" style="width: 550px; height: 200px; flex-direction: row;">
+            <ui:VisualElement name="ProfileImage" style="flex-direction: column; flex-basis: 200px; flex-shrink: 0; background-color: rgba(2, 80, 87, 0.66); border-left-color: rgb(7, 27, 29); border-right-color: rgb(7, 27, 29); border-top-color: rgb(7, 27, 29); border-bottom-color: rgb(7, 27, 29); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; margin-left: 20px;">
+                <ui:VisualElement name="ImageElement" style="background-image: url(&apos;project://database/Assets/10_UI/ProfileImage.renderTexture?fileID=8400000&amp;guid=46558f1c9aa1c7448a780fc63886795b&amp;type=2#ProfileImage&apos;); width: 100%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="InfoRows">
+                <ui:VisualElement name="HPRow" class="data-row" style="flex-direction: row;">
+                    <ui:VisualElement name="icon" class="icon" />
+                    <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(255, 47, 47);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="EnergyRow" class="data-row">
+                    <ui:VisualElement name="icon" class="icon" />
+                    <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(153, 255, 56);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

@@ -16,12 +16,16 @@
             </ui:VisualElement>
             <ui:VisualElement name="InfoRows">
                 <ui:VisualElement name="HPRow" class="data-row" style="flex-direction: row;">
-                    <ui:VisualElement name="icon" class="icon" />
-                    <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(255, 47, 47);" />
+                    <ui:VisualElement name="icon" class="icon" style="background-image: url(&apos;project://database/Assets/10_UI/UI/Button08.png?fileID=2800000&amp;guid=9bd06e4b2642021408758108558e21e5&amp;type=3#Button08&apos;); background-color: rgba(132, 104, 255, 0); transform-origin: center;" />
+                    <ui:VisualElement name="barContainer" class="bar-container">
+                        <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(255, 47, 47);" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="EnergyRow" class="data-row">
-                    <ui:VisualElement name="icon" class="icon" />
-                    <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(153, 255, 56);" />
+                    <ui:VisualElement name="icon" class="icon" style="background-color: rgba(132, 104, 255, 0); background-image: url(&apos;project://database/Assets/10_UI/UI/Button07.png?fileID=2800000&amp;guid=ed7e131d99131d4478aba02ab96cbebb&amp;type=3#Button07&apos;);" />
+                    <ui:VisualElement name="barContainer" class="bar-container">
+                        <ui:VisualElement name="bar" class="bar" style="-unity-background-image-tint-color: rgb(90, 255, 47);" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

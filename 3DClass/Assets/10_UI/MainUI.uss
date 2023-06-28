@@ -41,10 +41,9 @@
     margin-right: 10px;
 }
 
-.data-row > .bar {
+.data-row .bar-container {
     flex-basis: 200px;
     flex-grow: 1;
-    background-image: url('project://database/Assets/06.VFX/Textures/GradientMask.png?fileID=2800000&guid=232c60d6ca6852a4b982c2211917cb14&type=3#GradientMask');
     height: 50px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -58,4 +57,19 @@
     border-right-width: 3px;
     border-top-width: 3px;
     border-bottom-width: 3px;
+    transform-origin: left;
+}
+
+.data-row .bar {
+    flex-basis: 200px;
+    flex-grow: 1;
+    background-image: url('project://database/Assets/06.VFX/Textures/GradientMask.png?fileID=2800000&guid=232c60d6ca6852a4b982c2211917cb14&type=3#GradientMask');
+    height: 50px;
+    transform-origin: left;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in;
 }

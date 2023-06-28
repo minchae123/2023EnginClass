@@ -17,6 +17,9 @@ public class AgentController : MonoBehaviour
     public AgentMovement AgentMovementCompo { get; private set; }
     public DamageCaster DamageCasterCompo { get; private set; }
 
+    private bool isDead;
+    public bool IsDead => isDead;
+
     private void Awake()
     {
         stateDictionary = new Dictionary<StateType, Istate>();

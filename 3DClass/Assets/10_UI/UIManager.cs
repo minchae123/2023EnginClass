@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     private VisualElement root;
 
     private EnemyHPBar enemyHPBar;
+    private PlayerinfoSelection playerInfo;
 
     [SerializeField] private float enemyBarTimer = 4f, curEnemyBarTimer = 0f;
 
@@ -32,6 +33,14 @@ public class UIManager : MonoBehaviour
         root = uiDocument.rootVisualElement;
         VisualElement hpBarRoot = root.Q("HPBarRect");
         enemyHPBar = new EnemyHPBar(hpBarRoot);
+
+        VisualElement playerInfoRoot = root.Q("ProfileBox");
+        playerInfo = new PlayerinfoSelection(playerInfoRoot);
+    }
+
+    private void SetUpPlayer()
+    {
+
     }
 
     public void Subscribe(EnemyHealth health)

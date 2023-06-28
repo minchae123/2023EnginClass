@@ -31,4 +31,6 @@ public class PlayerinfoSelection
         playerHPBar = root.Q("HPRow").Q("bar");
         playerEnergyBar = root.Q("EnergyRow").Q("bar");
     }
+
+
 }

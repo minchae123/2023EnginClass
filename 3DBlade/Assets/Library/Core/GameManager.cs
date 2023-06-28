@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PoolingListSO _initPoolList;
 
+    [SerializeField]
+    private GameObject UIGameObject;
+
     private Transform _playerTrm;
     public Transform PlayerTrm
     {
@@ -20,6 +23,11 @@ public class GameManager : MonoBehaviour
                 _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
             return _playerTrm;
         }
+    }
+
+    private void ActiveUI()
+    {
+        UIGameObject.SetActive(true);
     }
 
     private void Awake()
@@ -33,6 +41,7 @@ public class GameManager : MonoBehaviour
         CreatePool();
         CreateTimeController();
         CreateCameraManager();
+        ActiveUI();
     }
 
     private void CreateCameraManager()

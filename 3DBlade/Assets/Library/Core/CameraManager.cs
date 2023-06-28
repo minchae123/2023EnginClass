@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -7,40 +5,38 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    private CinemachineVirtualCamera followCam;
-    private CinemachineBasicMultiChannelPerlin camPerlin;
+    private CinemachineVirtualCamera _followCam;
+    private CinemachineBasicMultiChannelPerlin _camPerlin;
 
-    private float initPower;
-    private float initTime;
-    private float curShakeTime;
-
+    private float _initPower;
+    private float _initTime;
+    private float _currentShakeTime;
     public void Init(Transform cameraTrm)
     {
-        followCam = cameraTrm.GetComponent<CinemachineVirtualCamera>();
-        camPerlin = followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _followCam = cameraTrm.GetComponent<CinemachineVirtualCamera>();
+        _camPerlin = _followCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     public void AddShake(float power, float time)
     {
-        camPerlin.m_AmplitudeGain = initPower = power;
-        curShakeTime = initTime = time;
+        _camPerlin.m_AmplitudeGain = _initPower = power;
+        _currentShakeTime = _initTime = time;
     }
 
     private void Update()
     {
-        if(curShakeTime > 0)
+        if(_currentShakeTime > 0)
         {
-            curShakeTime -= Time.deltaTime;
+            _currentShakeTime -= Time.deltaTime;
 
-            float ampGain = Mathf.Lerp(initPower, 0, curShakeTime / initTime);
-            camPerlin.m_AmplitudeGain = ampGain;
+            float ampGain = Mathf.Lerp(_initPower, 0, _currentShakeTime / _initTime);
+            _camPerlin.m_AmplitudeGain = ampGain;
 
-            if(curShakeTime < 0)
+            if(_currentShakeTime <= 0)
             {
-                curShakeTime = 0;
-                camPerlin.m_AmplitudeGain = 0;
+                _currentShakeTime = 0;
+                _camPerlin.m_AmplitudeGain = 0;
             }
         }
     }
-
 }

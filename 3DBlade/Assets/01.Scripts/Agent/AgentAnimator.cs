@@ -14,9 +14,8 @@ public class AgentAnimator : MonoBehaviour
     private readonly int _isDeadHash = Animator.StringToHash("is_dead");
     private readonly int _deadTriggerHash = Animator.StringToHash("dead");
 
-    private readonly int _hurtTriggerHash = Animator.StringToHash("hurt");
     private readonly int _isHitHash = Animator.StringToHash("is_hit");
-
+    private readonly int _hurtTriggerHash = Animator.StringToHash("hurt");
 
     public event Action OnAnimationEndTrigger = null;
     public event Action OnAnimationEventTrigger = null;
@@ -102,6 +101,6 @@ public class AgentAnimator : MonoBehaviour
 
     public void SetIsHit(bool value)
     {
-        _animator.SetBool(_isHitHash, value);
+        _animator.SetBool(_isHitHash, value); 
     }
 }

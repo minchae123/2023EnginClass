@@ -6,8 +6,6 @@ using UnityEngine.VFX;
 
 public class Beam : PoolableMono
 {
-    [SerializeField] private LayerMask whatIsEnemy;
-
     private VisualEffect _beamMuzzle;
     private VisualEffect _beamFlare;
 
@@ -41,9 +39,9 @@ public class Beam : PoolableMono
         Init();
     }
 
-    public void SetupLayerMask(LayerMask target)
+    public void SetUpLayerMask(LayerMask target)
     {
-        whatIsEnemy = target;
+        _whatIsEnemy = target;
     }
 
     public void PreCharging()
@@ -57,7 +55,9 @@ public class Beam : PoolableMono
         float r = _lineRenderer.startWidth; //라인이 그려지는 시작 두께
 
         RaycastHit hit;
-        bool isHit = Physics.SphereCast(transform.position, r, targetDir.normalized, out hit, _beamLength, whatIsEnemy);
+        bool isHit = Physics.SphereCast(
+            transform.position, r, targetDir.normalized,
+            out hit, _beamLength, _whatIsEnemy);
 
         _lineRenderer.enabled = true;
         _lineRenderer.SetPosition(0, transform.position);

@@ -19,20 +19,19 @@ public class AgentController : MonoBehaviour
     public DamageCaster DamageCasterCompo { get; private set; }
 
     public bool IsDead { get; private set; }
-    public AgentHealth AgentHelathCompo { get; private set; }
+    public AgentHealth AgentHealthCompo { get; private set; }
 
     public void SetDead()
     {
         IsDead = true;
     }
 
-
     private void Awake()
     {
         _stateDictionary = new Dictionary<StateType, IState>();
         Transform stateTrm = transform.Find("States");
 
-        AgentHelathCompo = GetComponent<AgentHealth>();
+        AgentHealthCompo = GetComponent<AgentHealth>();
 
         foreach( StateType state in Enum.GetValues(typeof (StateType)) )
         {
@@ -69,6 +68,7 @@ public class AgentController : MonoBehaviour
     private void Update()
     {
         if (IsDead) return;
+
         _currentState?.UpdateState();
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyBeamAttack : EnemyAttack
 {
-    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField]
+    private LayerMask _whatIsEnemy;
+
     [SerializeField]
     private Beam _beamPrefab;
     [SerializeField]
@@ -21,7 +23,7 @@ public class EnemyBeamAttack : EnemyAttack
     public override void CancelAttack()
     {
         if(_currentBeam != null)
-            _currentBeam?.StopBeam();
+            _currentBeam.StopBeam();
         _currentBeam = null;
     }
 
@@ -29,7 +31,7 @@ public class EnemyBeamAttack : EnemyAttack
     {
         _currentBeam = PoolManager.Instance.Pop(_beamPrefab.gameObject.name) as Beam;
         _currentBeam.transform.position = _atkPosTrm.position;
-        _currentBeam.SetupLayerMask(whatIsEnemy);
+        _currentBeam.SetUpLayerMask(_whatIsEnemy);
         _currentBeam.PreCharging(); //ÇÁ¸®Ã­Â¡
     }
 

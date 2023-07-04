@@ -36,6 +36,9 @@ public class EnemyController : PoolableMono
 
     private EnemyAttack _enemyAttack;
 
+    [field: SerializeField]
+    public bool IsActive { get; set; } = false;
+
     protected virtual void Awake()
     {
         _vfxManager = GetComponent<EnemyVFXManager>();
@@ -78,7 +81,7 @@ public class EnemyController : PoolableMono
 
     protected virtual void Update()
     {
-        if (IsDead) return;
+        if (IsDead || IsActive == false) return;
         _currentState?.UpdateState();
     }
 

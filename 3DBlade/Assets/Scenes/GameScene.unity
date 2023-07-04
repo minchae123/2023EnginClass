@@ -1278,6 +1278,48 @@ MonoBehaviour:
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &708509557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6359671737881466627, guid: 215f4accc272767499ef788c9f35d04d, type: 3}
+  m_PrefabInstance: {fileID: 708509548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708509549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b8a1a21fdd0bb4fbcadd214b51c29f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &708509558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708509549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb212a53999f14b4e8be7932256712df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDistance: 20
+  OnDropComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 708509557}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: set_IsActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &789759710
 GameObject:
   m_ObjectHideFlags: 3

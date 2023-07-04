@@ -77,5 +77,10 @@
     position: absolute;
     justify-content: flex-start;
     right: 10px;
-    bottom: 10px;
+    bottom: -50%;
+    -unity-font: url('project://database/Assets/09.Fonts/neodgm.ttf?fileID=12800000&guid=8431fc82e8b453647875dbc62d0895b5&type=3#neodgm');
+    font-size: 20px;
+    -unity-font-definition: url('project://database/Assets/09.Fonts/neodgmFont.asset?fileID=11400000&guid=fd2933aa7c539324ea862136ab19d3d6&type=2#neodgmFont');
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgba(0, 0, 0, 255);
 }

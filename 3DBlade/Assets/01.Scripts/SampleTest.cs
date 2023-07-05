@@ -48,14 +48,19 @@ public class SampleTest : MonoBehaviour
 
     private IEnumerator Start()
     {
-        var task1 = StartCoroutine(CoA());
-        var task2 = StartCoroutine(CoB());
+        CoroutineHandle task1 = this.RunCorotine(CoA());
+        CoroutineHandle task2 = this.RunCorotine(CoB());
+
+        while(!task1.IsDone || !task2.IsDone)
+        {
+            yield return null;
+        }
 
         //yield return CoA();
         //yield return CoB();
 
-        yield return task1; 
-        yield return task2;
+        // yield return task1; 
+        // yield return task2;
 
         Debug.Log("Job Complete");
     }

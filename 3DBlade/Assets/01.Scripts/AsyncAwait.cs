@@ -35,6 +35,7 @@ public class AsyncAwait : MonoBehaviour
 
     private async void StartTask()
     {
+        num = 0;
         Task t1 = Task.Run(() => MyJobA());
         Task t2 = Task.Run(() => MyJobB());
 
@@ -67,7 +68,10 @@ public class AsyncAwait : MonoBehaviour
     {
         for (int i = 0; i < 99999999; i++)
         {
-            num++;
+            lock(obj)
+            {
+                num++;
+            }
         }
     }
 
@@ -75,7 +79,10 @@ public class AsyncAwait : MonoBehaviour
     {
         for (int i = 0; i < 99999999; i++)
         {
-            num--;
+            lock(obj)
+            {
+                num--;
+            }
         }
     }
 }

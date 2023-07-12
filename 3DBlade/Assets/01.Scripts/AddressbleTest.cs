@@ -7,6 +7,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class AddressbleTest : MonoBehaviour
 {
+    [SerializeField] private AssetReference _ref;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
@@ -25,20 +27,16 @@ public class AddressbleTest : MonoBehaviour
 
     private void LoadPopupText()
     {
-        Addressables.LoadAssetAsync<GameObject>($"PopupText").Completed += obj =>
+        _ref.InstantiateAsync(Vector3.zero, Quaternion.identity).Completed += (obj) =>
         {
             handle = obj;
-
-            popupText = Instantiate(handle.Result, Vector3.zero, Quaternion.identity);
-
-            //Debug.Log(obj);
-            //Debug.Log(obj.Result);
+            popupText = obj.Result;
         };
     }
 
     private void UnloadPopupText()
     {
-        Destroy(popupText);
-        Addressables.Release(handle); // 핸들을 아예 빼서 메모리에서 빼준다
+        //Addressables.Release(handle); // 핸들을 아예 빼서 메모리에서 빼준다
+        _ref.ReleaseInstance(popupText);
     }
 }

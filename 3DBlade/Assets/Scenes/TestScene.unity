@@ -639,6 +639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FBX_Stone01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b6d8fdcdf57f474bae522c70e8e0afb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b6d8fdcdf57f474bae522c70e8e0afb, type: 3}
 --- !u!1 &961739749
@@ -3384,6 +3388,7 @@ GameObject:
   - component: {fileID: 2111585171}
   - component: {fileID: 2111585172}
   - component: {fileID: 2111585173}
+  - component: {fileID: 2111585174}
   m_Layer: 0
   m_Name: TestGameObject
   m_TagString: Untagged
@@ -3425,8 +3430,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111585170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203f53d0876c84a49b16a53af8029651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2111585174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111585170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe763a9c2f8b47141b95346b9851fed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

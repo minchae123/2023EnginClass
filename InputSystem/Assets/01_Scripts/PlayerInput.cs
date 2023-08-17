@@ -30,10 +30,15 @@ public class PlayerInput : MonoBehaviour
             {
                 Debug.Log(op.selectedControl.name);
                 op.Dispose();
+                var json = inputAction.SaveBindingOverridesAsJson();
+                Debug.Log(json);
+
+                inputAction.LoadBindingOverridesFromJson(json);
+
                 inputAction.Player.Enable();
             })
             .OnCancel(op =>
-            {   
+            {
                 Debug.Log("취소되었습니다");
                 op.Dispose();
                 inputAction.Player.Enable();

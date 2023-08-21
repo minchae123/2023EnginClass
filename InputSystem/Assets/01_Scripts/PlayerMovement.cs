@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity;
 
     public bool ActiveMove { get; set; } = true;
-    
+
     private PlayerInput playerInput;
 
     private void Awake()
@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInput.OnMovement += SetPlayerMovement;
         playerInput.OnJump += Jump;
+    }
+
+    private void Aim()
+    {
+
     }
 
     private void Jump()
@@ -46,10 +51,10 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVelocity = new Vector3(inputDirection.x, 0, inputDirection.y) * (moveSpeed * Time.fixedDeltaTime);
 
-        if(movementVelocity.sqrMagnitude > 0)
+        /*if(movementVelocity.sqrMagnitude > 0)
         {
             transform.rotation = Quaternion.LookRotation(movementVelocity);
-        }
+        }*/
     }
 
     private void ApplyGravity()

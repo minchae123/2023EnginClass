@@ -13,4 +13,10 @@
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     margin-right: 5px;
+    opacity: 0;
+    transition-property: opacity;
+}
+
+.bullet.on {
+    opacity: 1;
 }
